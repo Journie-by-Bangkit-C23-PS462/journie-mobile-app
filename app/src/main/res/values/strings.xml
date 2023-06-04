@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">Journie</string>
+    <string name="welcome">Selamat datang!</string>
+    <string name="login_msg">Silahkan login terlebih dahulu</string>
+    <string name="email">Email</string>
+    <string name="email_hint">example@mail.com</string>
+    <string name="password">Password</string>
+    <string name="password_hint">**********</string>
+    <string name="forgot_password">Lupa kata sandi? Sama, Sandi juga lupa.</string>
+    <string name="login">Masuk</string>
+    <string name="login_google">Masuk dengan Google</string>
+    <string name="register_rec">Belum punya akun? Kasian, daftar sini</string>
+    <string name="copyright">All rights reserved to Journie</string>
+</resources>
