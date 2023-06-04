@@ -2,6 +2,8 @@
     <string name="app_name">Journie</string>
     <string name="welcome">Selamat datang!</string>
     <string name="login_msg">Silahkan login terlebih dahulu</string>
+    <string name="welcome_register">Belum punya akun?</string>
+    <string name="register_msg">Tenang, kalian bisa daftar dulu.</string>
     <string name="email">Email</string>
     <string name="email_hint">example@mail.com</string>
     <string name="password">Kata Sandi</string>
@@ -12,6 +14,7 @@
     <string name="login">Masuk</string>
     <string name="login_google">Masuk dengan Google</string>
     <string name="register_rec">Belum punya akun? Kasian, daftar sini</string>
+    <string name="login_rec">Sudah ada akun? Join sini</string>
     <string name="copyright">All rights reserved to Journie</string>
     <string name="username">Username</string>
     <string name="username_hint">Contoh: sandi_123</string>
@@ -21,4 +24,5 @@
     <string name="interest_hint">Contoh: 30</string>
     <string name="register">Daftarkan Diriku</string>
     <string name="register_google">Daftar dengan Google</string>
+    <string name="title_activity_register">RegisterActivity</string>
 </resources>
