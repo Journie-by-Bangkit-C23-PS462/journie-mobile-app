@@ -12,6 +12,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import com.dicoding.journie.R
 import com.dicoding.journie.ui.theme.JournieTheme
 
@@ -23,16 +24,16 @@ fun LoginButton(
         onClick = {},
         modifier = modifier
             .fillMaxWidth()
-            .height(52.dp)
+            .height(48.dp)
     ) {
         Text(
             text = stringResource(R.string.login),
             color = MaterialTheme.colors.secondary,
             modifier = Modifier
                 .align(Alignment.CenterVertically),
-            style = MaterialTheme.typography.subtitle2.copy(
-                fontWeight = FontWeight.Bold
-            )
+            fontSize = 16.sp,
+            fontWeight = FontWeight.Bold,
+            letterSpacing = 1.sp
         )
     }
 }

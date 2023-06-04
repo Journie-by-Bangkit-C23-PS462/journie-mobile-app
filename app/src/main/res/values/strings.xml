@@ -4,11 +4,21 @@
     <string name="login_msg">Silahkan login terlebih dahulu</string>
     <string name="email">Email</string>
     <string name="email_hint">example@mail.com</string>
-    <string name="password">Password</string>
+    <string name="password">Kata Sandi</string>
     <string name="password_hint">**********</string>
+    <string name="confirm_password">Konfirmasi Kata Sandi</string>
+    <string name="confirm_password_hint">Copas aja yang diatas hehehe</string>
     <string name="forgot_password">Lupa kata sandi? Sama, Sandi juga lupa.</string>
     <string name="login">Masuk</string>
     <string name="login_google">Masuk dengan Google</string>
     <string name="register_rec">Belum punya akun? Kasian, daftar sini</string>
     <string name="copyright">All rights reserved to Journie</string>
+    <string name="username">Username</string>
+    <string name="username_hint">Contoh: sandi_123</string>
+    <string name="age">Umur</string>
+    <string name="age_hint">Contoh: 30</string>
+    <string name="interest">Umur</string>
+    <string name="interest_hint">Contoh: 30</string>
+    <string name="register">Daftarkan Diriku</string>
+    <string name="register_google">Daftar dengan Google</string>
 </resources>

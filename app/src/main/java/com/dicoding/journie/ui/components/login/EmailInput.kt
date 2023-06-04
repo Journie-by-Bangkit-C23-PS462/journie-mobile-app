@@ -30,7 +30,7 @@ fun EmailInput(
         },
         modifier = modifier
             .fillMaxWidth()
-            .heightIn(min = 48.dp)
+            .heightIn(min = 48.dp),
     )
 }
 

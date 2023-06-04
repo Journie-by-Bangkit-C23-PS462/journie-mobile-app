@@ -1,9 +1,7 @@
 package com.dicoding.journie.ui.screen
 
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.*
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
@@ -70,6 +68,7 @@ fun LoginContent(
                     modifier = Modifier
                         .padding(top = 8.dp)
                 )
+                Spacer(modifier = Modifier.height(15.dp))
                 Text(
                     text = stringResource(R.string.email),
                     style = MaterialTheme.typography.subtitle2,
