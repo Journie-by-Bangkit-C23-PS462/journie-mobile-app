@@ -72,30 +72,9 @@ fun RegisterContent(
             TextInput(label = "Username", placeholder = "Contoh: sandi_123")
             TextInput(label = "Umur", placeholder = "Contoh: 30")
             TextInput(label = "Hobi/Minat", placeholder = "Contoh: Minum Coklat Panas, Bermain Tic Tac Toe, dll.")
-            Text(
-                text = "Email",
-                fontWeight = FontWeight.Bold,
-                fontSize = 14.sp
-            )
-            Spacer(modifier = Modifier.height(12.dp))
             EmailInput()
-            Spacer(modifier = Modifier.height(28.dp))
-            Text(
-                text = "Kata Sandi",
-                fontWeight = FontWeight.Bold,
-                fontSize = 14.sp
-            )
-            Spacer(modifier = Modifier.height(12.dp))
-            PasswordInput()
-            Spacer(modifier = Modifier.height(28.dp))
-            Text(
-                text = "Konfirmasi Kata Sandi",
-                fontWeight = FontWeight.Bold,
-                fontSize = 14.sp
-            )
-            Spacer(modifier = Modifier.height(12.dp))
-            PasswordInput()
-            Spacer(modifier = Modifier.height(28.dp))
+            PasswordInput(labelPassword = "Kata Sandi")
+            PasswordInput(labelPassword = "Konfirmasi Kata Sandi")
             RegisterButton()
             Spacer(modifier = Modifier.height(15.dp))
             GoogleRegisterButton(modifier = Modifier.padding(top = 15.dp))

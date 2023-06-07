@@ -10,6 +10,7 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import com.dicoding.journie.ui.screen.RegisterScreen
 import com.dicoding.journie.ui.theme.JournieTheme
 
 class RegisterActivity : ComponentActivity() {
@@ -22,22 +23,18 @@ class RegisterActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colors.background
                 ) {
-                    Greeting("Android")
+                    RegisterScreen(modifier = Modifier)
                 }
             }
         }
     }
 }
 
-@Composable
-fun Greeting(name: String) {
-    Text(text = "Hello $name!")
-}
 
 @Preview(showBackground = true)
 @Composable
 fun DefaultPreview() {
     JournieTheme {
-        Greeting("Android")
+        RegisterScreen(modifier = Modifier)
     }
 }
