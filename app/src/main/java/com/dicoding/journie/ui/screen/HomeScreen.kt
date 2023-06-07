@@ -22,6 +22,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.dicoding.journie.R
 import com.dicoding.journie.data.dummyDestination
+import com.dicoding.journie.ui.components.home.BottomBar
 import com.dicoding.journie.ui.components.home.DestinationCard
 import com.dicoding.journie.ui.components.home.SectionTitle
 import com.dicoding.journie.ui.theme.JournieTheme
@@ -85,7 +86,7 @@ fun HomeScreen(modifier: Modifier = Modifier, username: String) {
                     LazyRow(
                         state = rememberLazyListState(),
                         horizontalArrangement = Arrangement.spacedBy(8.dp),
-                        contentPadding = PaddingValues(horizontal = 25.dp)
+                        contentPadding = PaddingValues(horizontal = 25.dp),
                     ) {
                         items(dummyDestination) {
                             DestinationCard(
@@ -97,11 +98,13 @@ fun HomeScreen(modifier: Modifier = Modifier, username: String) {
                             )
                         }
                     }
+                    Spacer(modifier = Modifier.height(25.dp))
+                    SectionTitle(title = "Rekomendasi Aktif")
                 }
             }
         },
-        bottomBar = BottomNavigation() {
-            
+        bottomBar = {
+            BottomBar()
         }
     )
 }
