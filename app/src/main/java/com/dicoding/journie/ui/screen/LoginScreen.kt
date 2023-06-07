@@ -87,7 +87,8 @@ fun LoginContent(
                 )
                 PasswordInput(
                     modifier = Modifier
-                        .padding(top = 8.dp)
+                        .padding(top = 8.dp),
+                    labelPassword = "Kata Sandi"
                 )
             }
             Text(

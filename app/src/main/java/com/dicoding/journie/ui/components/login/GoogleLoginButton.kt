@@ -31,13 +31,13 @@ fun GoogleLoginButton(
             .fillMaxWidth()
             .height(52.dp)
     ) {
-        Image(
-            painter = painterResource(R.drawable.google),
-            contentDescription = "Google Logo",
-            modifier = Modifier
-                .size(30.dp)
-                .padding(end = 8.dp)
-        )
+//        Image(
+//            painter = painterResource(R.drawable.google),
+//            contentDescription = "Google Logo",
+//            modifier = Modifier
+//                .size(30.dp)
+//                .padding(end = 8.dp)
+//        )
         Text(
             text = stringResource(R.string.login_google),
             color = MaterialTheme.colors.secondary,
