@@ -7,10 +7,11 @@ import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
-import androidx.compose.material.BottomNavigation
-import androidx.compose.material.Scaffold
-import androidx.compose.material.Text
+import androidx.compose.material.*
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Add
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -105,6 +106,30 @@ fun HomeScreen(modifier: Modifier = Modifier, username: String) {
         },
         bottomBar = {
             BottomBar()
+        },
+        floatingActionButton = {
+            FloatingActionButton(
+                onClick = {},
+                backgroundColor = Color.Black,
+                contentColor = Color.Yellow,
+                shape = RoundedCornerShape(10.dp),
+                modifier = Modifier
+                    .size(height = 60.dp, width = 180.dp),
+                elevation = FloatingActionButtonDefaults.elevation(defaultElevation = 0.dp)
+            ) {
+                Row(modifier = Modifier
+                    .fillMaxSize()
+                    .padding(15.dp), verticalAlignment = Alignment.CenterVertically) {
+                    Icon(imageVector = Icons.Filled.Add, contentDescription = "new plan icon", tint = Color.Yellow)
+                    Spacer(modifier = Modifier.width(8.dp))
+                    Text(
+                        text = "Rencana Baru",
+                        fontWeight = FontWeight.SemiBold,
+                        fontSize = 16.sp,
+                        color = Color.Yellow
+                    )
+                }
+            }
         }
     )
 }

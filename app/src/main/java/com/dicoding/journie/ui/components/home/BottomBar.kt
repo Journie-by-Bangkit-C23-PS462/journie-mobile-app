@@ -10,6 +10,7 @@ import androidx.compose.material.icons.filled.Person
 import androidx.compose.material.icons.filled.Place
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -20,7 +21,7 @@ import com.dicoding.journie.ui.theme.JournieTheme
 @Composable
 fun BottomBar(modifier: Modifier = Modifier) {
     BottomAppBar(
-        modifier = modifier,
+        modifier = modifier.shadow(elevation = 5.dp),
         backgroundColor = Color.White,
         elevation = 50.dp
     ) {
