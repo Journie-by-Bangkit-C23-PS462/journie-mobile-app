@@ -25,6 +25,7 @@ import com.dicoding.journie.R
 import com.dicoding.journie.data.dummyDestination
 import com.dicoding.journie.ui.components.home.BottomBar
 import com.dicoding.journie.ui.components.home.DestinationCard
+import com.dicoding.journie.ui.components.home.RecommendationCard
 import com.dicoding.journie.ui.components.home.SectionTitle
 import com.dicoding.journie.ui.theme.JournieTheme
 
@@ -101,6 +102,12 @@ fun HomeScreen(modifier: Modifier = Modifier, username: String) {
                     }
                     Spacer(modifier = Modifier.height(25.dp))
                     SectionTitle(title = "Rekomendasi Aktif")
+                    RecommendationCard(
+                        name = "Bandung",
+                        subname = "Jawa Barat",
+                        duration = 250,
+                        urlImage = "https://th.bing.com/th/id/R.8e0fb11dc04dd053d6cdbcd52dc9bcc6?rik=iD%2foSogxC9oC2g&riu=http%3a%2f%2f2.bp.blogspot.com%2f-DLWPx3Ldj_A%2fVcTOMJ6iwjI%2fAAAAAAAABUY%2fh9c_lfakEos%2fs1600%2fsate.jpg&ehk=5ImaTipkL%2fcjJK%2fTtXOQ4SIHtRIGRk8hU89wPbchHqQ%3d&risl=&pid=ImgRaw&r=0"
+                    )
                 }
             }
         },
