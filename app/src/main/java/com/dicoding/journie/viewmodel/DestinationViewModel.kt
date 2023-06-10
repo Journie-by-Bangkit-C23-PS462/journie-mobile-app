@@ -18,8 +18,8 @@ class DestinationViewModel(private val repository: Repository) : ViewModel() {
     private val _semarangPlaceList = MutableStateFlow<List<Destination>>(emptyList())
     val semarangPlacesList : StateFlow<List<Destination>> = _semarangPlaceList
 
-//    private val _surabayaPlaceList = MutableStateFlow<List<Destination>>(emptyList())
-//    val surabayaPlacesList : StateFlow<List<Destination>> = _surabayaPlaceList
+    private val _surabayaPlaceList = MutableStateFlow<List<Destination>>(emptyList())
+    val surabayaPlacesList : StateFlow<List<Destination>> = _surabayaPlaceList
 
     private val _jogjaPlaceList = MutableStateFlow<List<Destination>>(emptyList())
     val jogjaPlacesList : StateFlow<List<Destination>> = _jogjaPlaceList
@@ -29,7 +29,7 @@ class DestinationViewModel(private val repository: Repository) : ViewModel() {
         viewModelScope.launch {
             _jakartaPlaceList.value = repository.getJakartaPlaces()
             _bandungPlaceList.value = repository.getBandungPlaces()
-//            _surabayaPlaceList.value = repository.getSurabayaPlaces()
+            _surabayaPlaceList.value = repository.getSurabayaPlaces()
             _semarangPlaceList.value = repository.getSemarangPlaces()
             _jogjaPlaceList.value = repository.getJogjaPlaces()
         }

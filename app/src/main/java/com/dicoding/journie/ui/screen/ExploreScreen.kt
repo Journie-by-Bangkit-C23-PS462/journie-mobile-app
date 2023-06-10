@@ -33,7 +33,7 @@ fun ExploreScreen(
 ) {
     val jakartaPlaces by destinationViewModel.jakartaPlacesList.collectAsState()
     val bandungPlaces by destinationViewModel.bandungPlacesList.collectAsState()
-//    val surabayaPlaces by destinationViewModel.surabayaPlacesList.collectAsState()
+    val surabayaPlaces by destinationViewModel.surabayaPlacesList.collectAsState()
     val semarangPlaces by destinationViewModel.semarangPlacesList.collectAsState()
     val jogjaPlaces by destinationViewModel.jogjaPlacesList.collectAsState()
     val context = LocalContext.current
@@ -62,10 +62,10 @@ fun ExploreScreen(
                     Spacer(modifier = Modifier.height(12.dp))
                     ShowDestinations(bandungPlaces)
                     Spacer(modifier = Modifier.height(24.dp))
-//                    SectionTitle(title = "Surabaya")
-//                    Spacer(modifier = Modifier.height(12.dp))
-//                    ShowDestinations(surabayaPlaces)
-//                    Spacer(modifier = Modifier.height(24.dp))
+                    SectionTitle(title = "Surabaya")
+                    Spacer(modifier = Modifier.height(12.dp))
+                    ShowDestinations(surabayaPlaces)
+                    Spacer(modifier = Modifier.height(24.dp))
                     SectionTitle(title = "Semarang")
                     Spacer(modifier = Modifier.height(12.dp))
                     ShowDestinations(semarangPlaces)

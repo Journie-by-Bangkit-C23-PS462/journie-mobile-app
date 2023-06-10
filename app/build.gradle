@@ -14,7 +14,7 @@ android {
         targetSdk 32
         versionCode 1
         versionName "1.0"
-        buildConfigField "String", "BASE_URL_JOURNIE_API", '"https://mldeployfix2-ancxei2osq-et.a.run.app/"'
+        buildConfigField "String", "BASE_URL_JOURNIE_API", '"https://mldeployfix3-ancxei2osq-et.a.run.app/"'
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables {
             useSupportLibrary true
