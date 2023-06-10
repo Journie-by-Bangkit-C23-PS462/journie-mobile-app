@@ -119,14 +119,10 @@ fun HomeScreen(modifier: Modifier = Modifier, username: String) {
                 onClick = {},
                 backgroundColor = Color.Black,
                 contentColor = Color.Yellow,
-                shape = RoundedCornerShape(10.dp),
-                modifier = Modifier
-                    .size(height = 60.dp, width = 180.dp),
+                shape = RoundedCornerShape(5.dp),
                 elevation = FloatingActionButtonDefaults.elevation(defaultElevation = 0.dp)
             ) {
-                Row(modifier = Modifier
-                    .fillMaxSize()
-                    .padding(15.dp), verticalAlignment = Alignment.CenterVertically) {
+                Row(modifier = Modifier.padding(start = 12.dp, end = 12.dp),verticalAlignment = Alignment.CenterVertically) {
                     Icon(imageVector = Icons.Filled.Add, contentDescription = "new plan icon", tint = Color.Yellow)
                     Spacer(modifier = Modifier.width(8.dp))
                     Text(
