@@ -2,7 +2,7 @@ package com.dicoding.journie.data
 
 import com.dicoding.journie.data.network.api.APIService
 import com.dicoding.journie.data.network.response.Destination
-import com.dicoding.journie.data.network.response.ExploreDestination
+
 
 class Repository private constructor(
     private val apiService: APIService
@@ -10,7 +10,7 @@ class Repository private constructor(
 
     suspend fun getJakartaPlaces() : List<Destination> {
         val response = apiService.getJakartaDestination()
-        return response.exploreDestination
+        return response.data.toList()
     }
 
     companion object {

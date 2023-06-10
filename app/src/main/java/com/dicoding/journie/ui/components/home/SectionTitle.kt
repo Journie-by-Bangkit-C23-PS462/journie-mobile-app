@@ -13,7 +13,7 @@ fun SectionTitle(title: String) {
     Text(
         text = title,
         fontSize = 20.sp,
-        fontWeight = FontWeight.Bold,
+        fontWeight = FontWeight.Medium,
         modifier = Modifier.padding(start = 25.dp, end = 25.dp)
     )
 }

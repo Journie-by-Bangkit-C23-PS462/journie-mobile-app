@@ -8,7 +8,7 @@ class DestinationViewModelFactory private constructor(private val repository: Re
     : ViewModelProvider.NewInstanceFactory() {
 
     @Suppress("UNCHECKED_CAST")
-    override fun <T : ViewModel?> create(modelClass: Class<T>): T {
+    override fun <T : ViewModel> create(modelClass: Class<T>): T {
         if (modelClass.isAssignableFrom(DestinationViewModel::class.java)) {
             return DestinationViewModel(repository) as T
         }

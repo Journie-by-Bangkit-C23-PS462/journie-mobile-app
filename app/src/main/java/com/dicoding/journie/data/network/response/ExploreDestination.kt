@@ -6,8 +6,8 @@ import com.google.gson.annotations.SerializedName
 
 @Parcelize
 data class ExploreDestination(
-	@field:SerializedName("ExploreDestination")
-	val exploreDestination: List<Destination>
+	@field:SerializedName("data")
+	val data: ArrayList<Destination>
 ) : Parcelable
 
 @Parcelize
@@ -29,10 +29,7 @@ data class Destination(
 	val rating: Double? = null,
 
 	@field:SerializedName("Rank")
-	val rank: Int? = null,
-
-	@field:SerializedName("Duration")
-	val duration: Int? = null,
+	val rank: Double? = null,
 
 	@field:SerializedName("City")
 	val city: String? = null,
@@ -46,12 +43,10 @@ data class Destination(
 	@field:SerializedName("Price")
 	val price: Int? = null,
 
-	@field:SerializedName("UserId")
-	val userId: String? = null,
-
 	@field:SerializedName("Long")
 	val long: Double? = null,
 
 	@field:SerializedName("Lat")
 	val lat: Double? = null
+
 ) : Parcelable
