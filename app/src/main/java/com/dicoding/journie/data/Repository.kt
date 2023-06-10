@@ -13,6 +13,26 @@ class Repository private constructor(
         return response.data.toList()
     }
 
+    suspend fun getBandungPlaces() : List<Destination> {
+        val response = apiService.getBandungDestination()
+        return response.data.toList()
+    }
+
+    suspend fun getSurabayaPlaces() : List<Destination> {
+        val response = apiService.getSurabayaDestination()
+        return response.data.toList()
+    }
+
+    suspend fun getSemarangPlaces() : List<Destination> {
+        val response = apiService.getSemarangDestination()
+        return response.data.toList()
+    }
+
+    suspend fun getJogjaPlaces() : List<Destination> {
+        val response = apiService.getJogjaDestination()
+        return response.data.toList()
+    }
+
     companion object {
         @Volatile
         private var instance: Repository? = null

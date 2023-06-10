@@ -8,15 +8,15 @@ interface APIService {
     @GET("explore_jakarta")
     suspend fun getJakartaDestination() : ExploreDestination
 
-//    @GET("explore_bandung")
-//    fun getBandungDestination() : Call<ExploreDestination>
-//
-//    @GET("explore_surabaya")
-//    fun getSurabayaDestination() : Call<ExploreDestination>
-//
-//    @GET("explore_jogja")
-//    fun getJogjaDestination() : Call<ExploreDestination>
-//
-//    @GET("explore_semarang")
-//    fun getSemarangDestination() : Call<ExploreDestination>
+    @GET("explore_bandung")
+    suspend fun getBandungDestination() : ExploreDestination
+
+    @GET("explore_surabaya")
+    suspend fun getSurabayaDestination() : ExploreDestination
+
+    @GET("explore_jogja")
+    suspend fun getJogjaDestination() : ExploreDestination
+
+    @GET("explore_semarang")
+    suspend fun getSemarangDestination() : ExploreDestination
 }

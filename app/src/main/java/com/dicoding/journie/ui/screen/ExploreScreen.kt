@@ -32,6 +32,10 @@ fun ExploreScreen(
     destinationViewModel: DestinationViewModel
 ) {
     val jakartaPlaces by destinationViewModel.jakartaPlacesList.collectAsState()
+    val bandungPlaces by destinationViewModel.bandungPlacesList.collectAsState()
+//    val surabayaPlaces by destinationViewModel.surabayaPlacesList.collectAsState()
+    val semarangPlaces by destinationViewModel.semarangPlacesList.collectAsState()
+    val jogjaPlaces by destinationViewModel.jogjaPlacesList.collectAsState()
     val context = LocalContext.current
     Scaffold(
         topBar = {
@@ -47,21 +51,37 @@ fun ExploreScreen(
                 Column(
                     modifier = Modifier
                         .fillMaxSize()
-                        .padding(top = 15.dp, bottom = 15.dp)
+                        .padding(top = 15.dp)
                         .verticalScroll(rememberScrollState())
                 ) {
                     SectionTitle(title = "Jakarta")
                     Spacer(modifier = Modifier.height(12.dp))
-                    showDestinations(jakartaPlaces)
+                    ShowDestinations(jakartaPlaces)
                     Spacer(modifier = Modifier.height(24.dp))
                     SectionTitle(title = "Bandung")
+                    Spacer(modifier = Modifier.height(12.dp))
+                    ShowDestinations(bandungPlaces)
+                    Spacer(modifier = Modifier.height(24.dp))
+//                    SectionTitle(title = "Surabaya")
+//                    Spacer(modifier = Modifier.height(12.dp))
+//                    ShowDestinations(surabayaPlaces)
+//                    Spacer(modifier = Modifier.height(24.dp))
+                    SectionTitle(title = "Semarang")
+                    Spacer(modifier = Modifier.height(12.dp))
+                    ShowDestinations(semarangPlaces)
+                    Spacer(modifier = Modifier.height(24.dp))
+                    SectionTitle(title = "Yogyakarta")
+                    Spacer(modifier = Modifier.height(12.dp))
+                    ShowDestinations(jogjaPlaces)
+                    Spacer(modifier = Modifier.height(24.dp))
                 }
             }
         }
     )
 }
 
-fun showDestinations(listDestinations: List<Destination>) {
+@Composable
+fun ShowDestinations(listDestinations: List<Destination>) {
     LazyRow(
         state = rememberLazyListState(),
         horizontalArrangement = Arrangement.spacedBy(8.dp),
