@@ -1,6 +1,5 @@
-package com.dicoding.journie.data
+package com.dicoding.journie.data.local
 
-import android.icu.text.CaseMap.Title
 import androidx.compose.ui.graphics.vector.ImageVector
 
 data class BottomBarItem(

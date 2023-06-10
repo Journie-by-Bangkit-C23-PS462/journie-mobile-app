@@ -1,6 +1,5 @@
 package com.dicoding.journie.ui.screen
 
-import android.widget.Space
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyRow
@@ -22,7 +21,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.dicoding.journie.R
-import com.dicoding.journie.data.dummyDestination
+import com.dicoding.journie.data.local.dummyDestination
 import com.dicoding.journie.ui.components.home.BottomBar
 import com.dicoding.journie.ui.components.home.DestinationCard
 import com.dicoding.journie.ui.components.home.RecommendationCard

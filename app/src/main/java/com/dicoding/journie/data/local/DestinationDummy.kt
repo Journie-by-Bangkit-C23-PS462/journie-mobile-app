@@ -1,4 +1,4 @@
-package com.dicoding.journie.data
+package com.dicoding.journie.data.local
 
 data class Destination(
     val name: String,

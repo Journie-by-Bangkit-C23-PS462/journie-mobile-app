@@ -14,8 +14,7 @@ import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.dicoding.journie.R
-import com.dicoding.journie.data.BottomBarItem
+import com.dicoding.journie.data.local.BottomBarItem
 import com.dicoding.journie.ui.theme.JournieTheme
 
 @Composable
