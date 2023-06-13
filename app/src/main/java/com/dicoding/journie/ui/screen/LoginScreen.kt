@@ -16,7 +16,7 @@ import androidx.compose.ui.unit.dp
 import com.dicoding.journie.R
 import com.dicoding.journie.ui.components.EmailInput
 import com.dicoding.journie.ui.components.GoogleLoginButton
-import com.dicoding.journie.ui.components.LoginButton
+import com.dicoding.journie.ui.components.PrimaryButton
 import com.dicoding.journie.ui.components.PasswordInput
 import com.dicoding.journie.ui.theme.JournieTheme
 
@@ -97,9 +97,13 @@ fun LoginContent(
                 modifier = Modifier
                     .padding(top = 15.dp)
             )
-            LoginButton(
+            PrimaryButton(
                 modifier = Modifier
-                    .padding(top = 15.dp)
+                    .padding(top = 15.dp),
+                onClick = {
+    //                    TODO: Insert login logic here
+                },
+                label = "Masuk"
             )
             GoogleLoginButton(
                 modifier = Modifier

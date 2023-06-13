@@ -22,6 +22,7 @@ import androidx.compose.ui.unit.sp
 import com.dicoding.journie.R
 import com.dicoding.journie.ui.components.EmailInput
 import com.dicoding.journie.ui.components.PasswordInput
+import com.dicoding.journie.ui.components.PrimaryButton
 import com.dicoding.journie.ui.components.register.GoogleRegisterButton
 import com.dicoding.journie.ui.components.register.RegisterButton
 import com.dicoding.journie.ui.components.register.TextInput
@@ -75,7 +76,14 @@ fun RegisterContent(
             EmailInput()
             PasswordInput(labelPassword = "Kata Sandi")
             PasswordInput(labelPassword = "Konfirmasi Kata Sandi")
-            RegisterButton()
+            PrimaryButton(
+                onClick = {
+                    // TODO: Insert register logic here
+                },
+                modifier = Modifier
+                    .padding(top = 15.dp),
+                label = "Daftarkan Diriku"
+            )
             Spacer(modifier = Modifier.height(15.dp))
             GoogleRegisterButton(modifier = Modifier.padding(top = 15.dp))
             Spacer(modifier = Modifier.height(15.dp))

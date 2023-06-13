@@ -17,17 +17,19 @@ import com.dicoding.journie.R
 import com.dicoding.journie.ui.theme.JournieTheme
 
 @Composable
-fun LoginButton(
-    modifier: Modifier = Modifier
+fun PrimaryButton(
+    modifier: Modifier = Modifier,
+    onClick: () -> Unit,
+    label: String
 ) {
     Button(
-        onClick = {},
+        onClick = onClick,
         modifier = modifier
             .fillMaxWidth()
             .height(48.dp)
     ) {
         Text(
-            text = stringResource(R.string.login),
+            text = label,
             color = MaterialTheme.colors.secondary,
             modifier = Modifier
                 .align(Alignment.CenterVertically),
@@ -42,6 +44,9 @@ fun LoginButton(
 @Composable
 fun LoginButtonPreview() {
     JournieTheme {
-        LoginButton()
+        PrimaryButton(
+            onClick = {},
+            label = "Contoh"
+        )
     }
 }
