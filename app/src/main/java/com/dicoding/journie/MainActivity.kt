@@ -34,6 +34,7 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colors.background
                 ) {
+
                 }
             }
         }
@@ -53,7 +54,7 @@ fun JournieApp(
         bottomBar = { BottomBar(navController = navController)}) { paddingValues ->
         NavHost(navController = navController, startDestination = Screen.Home.route, modifier = Modifier.padding(paddingValues)) {
             composable(Screen.Home.route) {
-                HomeScreen(username = username)
+                HomeScreen(username = username, age = age)
             }
             composable(Screen.Explore.route) {
                 ExploreScreen()

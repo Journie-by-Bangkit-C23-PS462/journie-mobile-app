@@ -1,5 +1,6 @@
 package com.dicoding.journie.ui.screen
 
+import android.content.Intent
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyRow
@@ -15,6 +16,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
@@ -24,6 +26,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.dicoding.journie.CreatePlanActivity
 import com.dicoding.journie.R
 import com.dicoding.journie.data.local.dummyDestination
 import com.dicoding.journie.data.navigation.Screen
@@ -37,15 +40,25 @@ import com.dicoding.journie.ui.theme.JournieTheme
 fun HomeScreen(
     modifier: Modifier = Modifier,
     username: String,
+    age: Int
 ) {
+    val context = LocalContext.current
     Box(modifier = modifier.fillMaxSize()) {
         Column(
-            modifier = Modifier.fillMaxSize().padding(bottom = 15.dp, end = 15.dp),
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(bottom = 15.dp, end = 15.dp),
             verticalArrangement = Arrangement.Bottom,
             horizontalAlignment = Alignment.End
         ) {
             FloatingActionButton(
-                onClick = {},
+                onClick = {
+                          val intent = Intent(context, CreatePlanActivity::class.java).apply {
+                              putExtra(CreatePlanActivity.EXTRA_USERNAME, username)
+                              putExtra(CreatePlanActivity.EXTRA_AGE, age)
+                          }
+                    context.startActivity(intent)
+                },
                 backgroundColor = Color.Black,
                 contentColor = Color.Yellow,
                 shape = RoundedCornerShape(5.dp),
@@ -139,6 +152,6 @@ fun HomeScreen(
 @Composable
 fun HomePreview() {
     JournieTheme {
-        HomeScreen(username = "Orang Ganteng")
+        HomeScreen(username = "Orang Ganteng", age = 22)
     }
 }

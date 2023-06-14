@@ -18,15 +18,19 @@ import androidx.navigation.NavController
 import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.NavHost
 import androidx.navigation.NavHostController
+import androidx.navigation.compose.currentBackStackEntryAsState
 import com.dicoding.journie.data.navigation.BottomBarItem
 import com.dicoding.journie.data.navigation.Screen
 import com.dicoding.journie.ui.theme.JournieTheme
+import androidx.compose.runtime.getValue
 
 @Composable
 fun BottomBar(
     modifier: Modifier = Modifier,
     navController: NavHostController
 ) {
+    val navBackStackEntry by navController.currentBackStackEntryAsState()
+    val currentRoute = navBackStackEntry?.destination?.route
     BottomAppBar(
         modifier = modifier.shadow(elevation = 5.dp),
         backgroundColor = Color.White,
@@ -51,7 +55,7 @@ fun BottomBar(
         )
         navigationItems.map {
             BottomNavigationItem(
-                selected = it.title == navigationItems[0].title,
+                selected = currentRoute == it.screen.route,
                 onClick = {
                           navController.navigate(it.screen.route) {
                               popUpTo(navController.graph.findStartDestination().id) {
