@@ -44,12 +44,12 @@ fun CreatePlanScreen(
         topBar = {
             TopAppBar(
                 title = {
-                        Text(text = "Buat Rencana")
+                    Text(text = "Buat Rencana")
                 },
                 navigationIcon = {
                     IconButton(onClick = {
                         context.finish()
-                    }) { Icon(Icons.Filled.ArrowBack," icon back to the previous page")}
+                    }) { Icon(Icons.Filled.ArrowBack, " icon back to the previous page") }
                 },
                 backgroundColor = Color.White,
                 elevation = 0.dp
@@ -67,6 +67,7 @@ fun CreatePlanScreen(
                 Row(
                     modifier = Modifier.fillMaxWidth()
                 ) {
+                    var expandedMenuState by remember { mutableStateOf(false) }
                     val cities = listOf(
                         "Bandung",
                         "Jakarta",
@@ -74,82 +75,72 @@ fun CreatePlanScreen(
                         "Surabaya",
                         "Yogyakarta"
                     )
-                    val days = listOf("1","2","3")
+                    val days = listOf("1", "2", "3")
                     Column(modifier = Modifier.fillMaxWidth(0.5f)) {
-                        Text(text = "Kota", fontWeight = FontWeight.Medium)
+                        Text(text = "Kota", fontWeight = FontWeight.SemiBold)
                         Spacer(modifier = Modifier.height(12.dp))
                         DropdownChoice(
-                            values = cities,
-                            valueState = cityState,
-                            onValueChange = { newCityValue ->
-                                cityState = newCityValue
-                            }
-                        )
+                            items = cities,
+                            selectedItem = cityState,
+                            onItemSelected = { cityState = it })
                     }
                     Spacer(modifier = Modifier.width(15.dp))
                     Column(modifier = Modifier.fillMaxWidth()) {
-                        Text(text = "Durasi Hari")
+                        Text(text = "Durasi Hari", fontWeight = FontWeight.SemiBold)
                         Spacer(modifier = Modifier.height(12.dp))
                         DropdownChoice(
-                            values = days,
-                            valueState = durationState,
-                            onValueChange = { newDurationValue ->
-                                durationState = newDurationValue
-                            }
+                            items = days,
+                            selectedItem = durationState,
+                            onItemSelected = { durationState = it }
                         )
                     }
                 }
-                Spacer(modifier = Modifier.height(15.dp))
-                Row(
-                    modifier = Modifier.fillMaxWidth()
-                ) {
-                    val preferences = arrayListOf<String>(
-                        "Bahari",
-                        "Budaya",
-                        "Taman Hiburan",
-                        "Cagar Alam",
-                        "Pusat Perbelanjaan",
-                        "Tempat Ibadah"
-                    )
-                    Column(modifier = Modifier.fillMaxWidth(0.5f)) {
-                        PreferenceTripCheckBox(
-                            label = "Bahari",
-                            preference = checkedBahariState,
-                            onPreferenceStateChange = { checkedBahariState = it }
-                        )
-                        PreferenceTripCheckBox(
-                            label = "Budaya",
-                            preference = checkedBudayaState,
-                            onPreferenceStateChange = { checkedBudayaState = it }
-                        )
-                        PreferenceTripCheckBox(
-                            label = "Taman Hiburan",
-                            preference = checkedTamanHiburanState,
-                            onPreferenceStateChange = { checkedTamanHiburanState = it }
-                        )
-                    }
-                    Spacer(modifier = Modifier.width(15.dp))
-                    Column(modifier = Modifier.fillMaxWidth()) {
-                        PreferenceTripCheckBox(
-                            label = "Cagar Alam",
-                            preference = checkedCagarAlamState,
-                            onPreferenceStateChange = { checkedCagarAlamState = it }
-                        )
-                        PreferenceTripCheckBox(
-                            label = "Pusat Perbelanjaan",
-                            preference = checkedPusatPerbelanjaanState,
-                            onPreferenceStateChange = { checkedPusatPerbelanjaanState = it }
-                        )
-                        PreferenceTripCheckBox(
-                            label = "Tempat Ibadah",
-                            preference = checkedTempatIbadah,
-                            onPreferenceStateChange = { checkedTempatIbadah = it }
-                        )
+                Spacer(modifier = Modifier.height(20.dp))
+                Column(modifier = Modifier.fillMaxWidth()) {
+                    Text(text = "Preferensi Tempat Wisata", fontWeight = FontWeight.SemiBold)
+                    Row(
+                        modifier = Modifier.fillMaxWidth()
+                    ) {
+                        Column(modifier = Modifier.fillMaxWidth(0.5f)) {
+                            PreferenceTripCheckBox(
+                                label = "Bahari",
+                                preference = checkedBahariState,
+                                onPreferenceStateChange = { checkedBahariState = it }
+                            )
+                            PreferenceTripCheckBox(
+                                label = "Budaya",
+                                preference = checkedBudayaState,
+                                onPreferenceStateChange = { checkedBudayaState = it }
+                            )
+                            PreferenceTripCheckBox(
+                                label = "Taman Hiburan",
+                                preference = checkedTamanHiburanState,
+                                onPreferenceStateChange = { checkedTamanHiburanState = it }
+                            )
+                        }
+                        Spacer(modifier = Modifier.width(15.dp))
+                        Column(modifier = Modifier.fillMaxWidth()) {
+                            PreferenceTripCheckBox(
+                                label = "Cagar Alam",
+                                preference = checkedCagarAlamState,
+                                onPreferenceStateChange = { checkedCagarAlamState = it }
+                            )
+                            PreferenceTripCheckBox(
+                                label = "Pusat Perbelanjaan",
+                                preference = checkedPusatPerbelanjaanState,
+                                onPreferenceStateChange = { checkedPusatPerbelanjaanState = it }
+                            )
+                            PreferenceTripCheckBox(
+                                label = "Tempat Ibadah",
+                                preference = checkedTempatIbadah,
+                                onPreferenceStateChange = { checkedTempatIbadah = it }
+                            )
+                        }
                     }
                 }
                 PrimaryButton(
                     onClick = {
-                              // TODO: Insert planning recommendation logic here
+                        // TODO: Insert planning recommendation logic here
                     },
                     modifier = Modifier
                         .padding(top = 15.dp),
@@ -159,6 +150,7 @@ fun CreatePlanScreen(
         }
     }
 }
+
 
 @Preview(showBackground = true)
 @Composable

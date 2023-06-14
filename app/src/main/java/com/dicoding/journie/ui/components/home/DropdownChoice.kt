@@ -19,11 +19,13 @@ import com.dicoding.journie.ui.theme.JournieTheme
 
 @Composable
 fun DropdownChoice(
-    values: List<String>,
-    onValueChange: (String) -> Unit,
-    valueState: String
+    items: List<String>,
+    selectedItem: String,
+    onItemSelected: (String) -> Unit
 ) {
     var expanded by remember { mutableStateOf(false) }
+    var selectedIndex by remember { mutableStateOf(0) }
+    var textFieldValue by remember { mutableStateOf(selectedItem) }
 
     val icon = if (expanded)
         Icons.Filled.KeyboardArrowUp
@@ -33,8 +35,8 @@ fun DropdownChoice(
     var dropdownMenuSize by remember { mutableStateOf(Size.Zero) }
 
     OutlinedTextField(
-        value = valueState,
-        onValueChange = onValueChange,
+        value = textFieldValue,
+        onValueChange = { textFieldValue = it },
         modifier = Modifier
             .fillMaxWidth()
             .onGloballyPositioned { coordinates -> dropdownMenuSize = coordinates.size.toSize() },
@@ -42,7 +44,9 @@ fun DropdownChoice(
             Icon(
                 imageVector = icon,
                 contentDescription = "icon to show and close dropdown menu",
-                modifier = Modifier.clickable { expanded = !expanded }
+                modifier = Modifier.clickable(
+                    onClick = { expanded = !expanded }
+                )
             )
         }
     )
@@ -50,16 +54,18 @@ fun DropdownChoice(
         expanded = expanded,
         onDismissRequest = { expanded = false },
         modifier = Modifier
-            .width(with(LocalDensity.current){dropdownMenuSize.width.toDp()})
+            .width(with(LocalDensity.current){dropdownMenuSize.width.toDp()}),
     ) {
-        values.forEach { value ->
+        items.forEachIndexed { index, item ->
             DropdownMenuItem(
                 onClick = {
+                    selectedIndex = index
                     expanded = false
-                    onValueChange
-                }
+                    textFieldValue = item
+                    onItemSelected(item)
+                } 
             ) {
-                Text(text = value)
+                Text(text = item)
             }
         }
     }
@@ -69,20 +75,20 @@ fun DropdownChoice(
 @Composable
 fun DropdownChoicePreview() {
     JournieTheme {
-        var valState by remember { mutableStateOf("-") }
-        val cities = listOf<String>(
-            "Bandung",
-            "Jakarta",
-            "Semarang",
-            "Surabaya",
-            "Yogyakarta"
-        )
-        DropdownChoice(
-            values = cities,
-            valueState = valState,
-            onValueChange = {
-                valState = it
-            }
-        )
+//        var valState by remember { mutableStateOf("-") }
+//        val cities = listOf<String>(
+//            "Bandung",
+//            "Jakarta",
+//            "Semarang",
+//            "Surabaya",
+//            "Yogyakarta"
+//        )
+//        DropdownChoice(
+//            values = cities,
+//            valueState = valState,
+//            onValueChange = {
+//                valState = it
+//            }
+//        )
     }
 }
