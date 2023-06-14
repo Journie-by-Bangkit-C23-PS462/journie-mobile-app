@@ -2,6 +2,8 @@ package com.dicoding.journie.ui.screen
 
 import android.app.Activity
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
@@ -38,7 +40,9 @@ fun PlaceScreen(
     Scaffold(
         topBar = {
             TopAppBar(
-                title = {},
+                title = {
+                        Text(text = "Detail Destinasi")
+                },
                 navigationIcon = {
                     IconButton(onClick = {
                         context.finish()
@@ -58,28 +62,31 @@ fun PlaceScreen(
                     .height(200.dp)
                     .fillMaxWidth()
             )
-            Column(modifier = Modifier.padding(start = 25.dp, end = 25.dp)) {
-                Column(modifier = Modifier.padding(12.dp)) {
-                    Text(
-                        text = title,
-                        fontSize = 24.sp,
-                        fontWeight = FontWeight.Bold
-                    )
-                    Spacer(modifier = Modifier.height(8.dp))
-                    Text(
-                        text = "${category} di ${city}",
-                        fontSize = 18.sp
-                    )
-                    Spacer(modifier = Modifier.height(12.dp))
-                    Row(horizontalArrangement = Arrangement.spacedBy(4.dp), verticalAlignment = Alignment.CenterVertically) {
-                        Icon(painter = painterResource(id = R.drawable.baseline_star_24), contentDescription = "star icon", tint = Color.Yellow)
-                        Text(text = "Rating: $rating (${score})", fontSize = 12.sp, color = Color.Gray)
-                    }
-                    Spacer(modifier = Modifier.height(18.dp))
-                    Text(text = description, lineHeight = 30.sp)
-                    Spacer(modifier = Modifier.height(20.dp))
-                    VisitMapButton(latitude = latitude, longitude = longitude, placeName = title)
+            Column(modifier = Modifier
+                .padding(start = 25.dp, end = 25.dp, top = 15.dp)
+                .verticalScroll(
+                    rememberScrollState()
+                )) {
+                Text(
+                    text = title,
+                    fontSize = 24.sp,
+                    fontWeight = FontWeight.Bold
+                )
+                Spacer(modifier = Modifier.height(8.dp))
+                Text(
+                    text = "${category} di ${city}",
+                    fontSize = 18.sp
+                )
+                Spacer(modifier = Modifier.height(12.dp))
+                Row(horizontalArrangement = Arrangement.spacedBy(4.dp), verticalAlignment = Alignment.CenterVertically) {
+                    Icon(painter = painterResource(id = R.drawable.baseline_star_24), contentDescription = "star icon", tint = Color.Yellow)
+                    Text(text = "Rating: $rating (${score})", fontSize = 12.sp, color = Color.Gray)
                 }
+                Spacer(modifier = Modifier.height(18.dp))
+                Text(text = description, lineHeight = 30.sp)
+                Spacer(modifier = Modifier.height(20.dp))
+                VisitMapButton(latitude = latitude, longitude = longitude, placeName = title)
+                Spacer(modifier = Modifier.height(15.dp))
             }
         }
     }

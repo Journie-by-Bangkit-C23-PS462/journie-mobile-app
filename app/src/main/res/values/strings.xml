@@ -25,4 +25,6 @@
     <string name="register">Daftarkan Diriku</string>
     <string name="register_google">Daftar dengan Google</string>
     <string name="title_activity_register">RegisterActivity</string>
+    <string name="title_activity_main">MainActivity</string>
+    <string name="title_activity_detail_destination">DetailDestinationActivity</string>
 </resources>

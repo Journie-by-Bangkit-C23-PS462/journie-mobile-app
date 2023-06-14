@@ -27,11 +27,13 @@ class DestinationViewModel(private val repository: Repository) : ViewModel() {
 
     init {
         viewModelScope.launch {
-            _jakartaPlaceList.value = repository.getJakartaPlaces()
-            _bandungPlaceList.value = repository.getBandungPlaces()
-            _surabayaPlaceList.value = repository.getSurabayaPlaces()
-            _semarangPlaceList.value = repository.getSemarangPlaces()
-            _jogjaPlaceList.value = repository.getJogjaPlaces()
+            repository.startRefreshAPICall(5000, this@launch) {
+                _jakartaPlaceList.value = repository.getJakartaPlaces()
+                _bandungPlaceList.value = repository.getBandungPlaces()
+                _surabayaPlaceList.value = repository.getSurabayaPlaces()
+                _semarangPlaceList.value = repository.getSemarangPlaces()
+                _jogjaPlaceList.value = repository.getJogjaPlaces()
+            }
         }
     }
 }

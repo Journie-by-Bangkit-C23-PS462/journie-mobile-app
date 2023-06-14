@@ -14,11 +14,19 @@ import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.dicoding.journie.data.local.BottomBarItem
+import androidx.navigation.NavController
+import androidx.navigation.NavGraph.Companion.findStartDestination
+import androidx.navigation.NavHost
+import androidx.navigation.NavHostController
+import com.dicoding.journie.data.navigation.BottomBarItem
+import com.dicoding.journie.data.navigation.Screen
 import com.dicoding.journie.ui.theme.JournieTheme
 
 @Composable
-fun BottomBar(modifier: Modifier = Modifier) {
+fun BottomBar(
+    modifier: Modifier = Modifier,
+    navController: NavHostController
+) {
     BottomAppBar(
         modifier = modifier.shadow(elevation = 5.dp),
         backgroundColor = Color.White,
@@ -27,21 +35,32 @@ fun BottomBar(modifier: Modifier = Modifier) {
         val navigationItems = listOf(
             BottomBarItem(
                 title = "Home",
-                icon = Icons.Filled.Home
+                icon = Icons.Filled.Home,
+                screen = Screen.Home
             ),
             BottomBarItem(
                 title = "Explore",
-                icon = Icons.Filled.Place
+                icon = Icons.Filled.Place,
+                screen = Screen.Explore
             ),
             BottomBarItem(
                 title = "Profile",
-                icon = Icons.Filled.Person
+                icon = Icons.Filled.Person,
+                screen = Screen.Profile
             )
         )
         navigationItems.map {
             BottomNavigationItem(
                 selected = it.title == navigationItems[0].title,
-                onClick = {},
+                onClick = {
+                          navController.navigate(it.screen.route) {
+                              popUpTo(navController.graph.findStartDestination().id) {
+                                  saveState = true
+                              }
+                              restoreState = true
+                              launchSingleTop = true
+                          }
+                },
                 icon = {
                        Icon(imageVector = it.icon, contentDescription = "icon")
                 },
@@ -59,6 +78,6 @@ fun BottomBar(modifier: Modifier = Modifier) {
 @Composable
 fun BottomBarPreview() {
     JournieTheme {
-        BottomBar()
+//        BottomBar()
     }
 }
