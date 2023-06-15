@@ -22,27 +22,26 @@ import com.dicoding.journie.ui.theme.JournieTheme
 
 @Composable
 fun PasswordInput(
-    modifier: Modifier = Modifier,
-    labelPassword : String
+    label: String,
+    placeholder: String,
+    value: String,
+    onValueChange: (String) -> Unit
 ) {
-    var value by remember { mutableStateOf("") }
     var passwordVisibility by remember { mutableStateOf(false) }
     Column {
         Text(
-            text = labelPassword,
+            text = label,
             fontWeight = FontWeight.Bold,
             fontSize = 14.sp
         )
         Spacer(modifier = Modifier.height(12.dp))
         OutlinedTextField(
             value = value,
-            onValueChange = { newText ->
-                value = newText
-            },
+            onValueChange = onValueChange,
             placeholder = {
-                Text(stringResource(R.string.password_hint))
+                Text(text = placeholder)
             },
-            modifier = modifier
+            modifier = Modifier
                 .fillMaxWidth()
                 .heightIn(min = 48.dp),
             visualTransformation = if ( passwordVisibility ) VisualTransformation.None else PasswordVisualTransformation(),
@@ -55,6 +54,6 @@ fun PasswordInput(
 @Composable
 fun PasswordInputPreview() {
     JournieTheme {
-        PasswordInput(labelPassword = "Password")
+//        PasswordInput(label = "Password")
     }
 }

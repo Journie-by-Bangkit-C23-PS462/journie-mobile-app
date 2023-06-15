@@ -19,25 +19,25 @@ import com.dicoding.journie.ui.theme.JournieTheme
 
 @Composable
 fun EmailInput(
-    modifier: Modifier = Modifier
+    label: String,
+    placeholder: String,
+    value: String,
+    onValueChange: (String) -> Unit
 ) {
-    var value by remember { mutableStateOf("") }
     Column {
         Text(
-            text = "Email",
+            text = label,
             fontWeight = FontWeight.Bold,
             fontSize = 14.sp
         )
         Spacer(modifier = Modifier.height(12.dp))
         OutlinedTextField(
-            value = value,
-            onValueChange = { newText ->
-                value = newText
-            },
+            value = value ,
+            onValueChange = onValueChange,
             placeholder = {
-                Text(stringResource(R.string.email_hint))
+                Text(text = placeholder)
             },
-            modifier = modifier
+            modifier = Modifier
                 .fillMaxWidth()
                 .heightIn(min = 48.dp),
             keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Email)
@@ -50,6 +50,6 @@ fun EmailInput(
 @Composable
 fun EmailInputPreview() {
     JournieTheme {
-        EmailInput()
+//        EmailInput()
     }
 }

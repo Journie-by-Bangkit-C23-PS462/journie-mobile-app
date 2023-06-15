@@ -75,21 +75,21 @@ fun LoginContent(
                     modifier = Modifier
                         .padding(top = 15.dp)
                 )
-                EmailInput(
-                    modifier = Modifier
-                        .padding(top = 8.dp)
-                )
-                Text(
-                    text = stringResource(R.string.password),
-                    style = MaterialTheme.typography.subtitle2,
-                    modifier = Modifier
-                        .padding(top = 10.dp)
-                )
-                PasswordInput(
-                    modifier = Modifier
-                        .padding(top = 8.dp),
-                    labelPassword = "Kata Sandi"
-                )
+//                EmailInput(
+//                    modifier = Modifier
+//                        .padding(top = 8.dp)
+//                )
+//                Text(
+//                    text = stringResource(R.string.password),
+//                    style = MaterialTheme.typography.subtitle2,
+//                    modifier = Modifier
+//                        .padding(top = 10.dp)
+//                )
+//                PasswordInput(
+//                    modifier = Modifier
+//                        .padding(top = 8.dp),
+//                    labelPassword = "Kata Sandi"
+//                )
             }
             Text(
                 text = stringResource(R.string.forgot_password),
