@@ -2,7 +2,6 @@ package com.dicoding.journie.ui.components.home
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.Checkbox
-import androidx.compose.material.CheckboxColors
 import androidx.compose.material.CheckboxDefaults
 import androidx.compose.material.Text
 import androidx.compose.runtime.*

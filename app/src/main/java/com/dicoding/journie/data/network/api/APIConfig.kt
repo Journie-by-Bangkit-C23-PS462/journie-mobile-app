@@ -1,13 +1,10 @@
 package com.dicoding.journie.data.network.api
 
-//import com.dicoding.journie.BuildConfig
 import com.dicoding.journie.BuildConfig
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import retrofit2.create
-import java.sql.Time
 import java.util.concurrent.TimeUnit
 
 class APIConfig {
@@ -35,7 +32,7 @@ class APIConfig {
             return retrofitInstance.create(APIService::class.java)
         }
 
-        fun getServiceCreateRecommendation() : APIService {
+        fun getRecommendationPlanService() : APIService {
             val loggingInterceptor = if (BuildConfig.DEBUG) {
                 HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY)
             } else {
@@ -50,7 +47,7 @@ class APIConfig {
                 .build()
 
             val retrofitInstance = Retrofit.Builder()
-                .baseUrl("https://mldeployfinal-ancxei2osq-et.a.run.app/")
+                .baseUrl("https://mldeployfinal4-ancxei2osq-et.a.run.app")
                 .addConverterFactory(GsonConverterFactory.create())
                 .client(client)
                 .build()

@@ -8,15 +8,11 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Scaffold
 import androidx.compose.material.Surface
-import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.navigation.NavController
-import androidx.navigation.NavHostController
-import androidx.navigation.compose.NavHost
-import androidx.navigation.compose.composable
-import androidx.navigation.compose.rememberNavController
+import androidx.navigation.*
+import androidx.navigation.compose.*
 import com.dicoding.journie.data.navigation.Screen
 import com.dicoding.journie.ui.components.home.BottomBar
 import com.dicoding.journie.ui.screen.*
@@ -33,7 +29,7 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colors.background
                 ) {
-                    JournieApp(username = "rolandganteng", email = "ganteng@mail.com", age = 25, isMale = true)
+                    JournieApp(username = "Bangkit Reviewer", age = 25)
                 }
             }
         }
@@ -46,15 +42,13 @@ fun JournieApp(
     modifier: Modifier = Modifier,
     navController: NavHostController = rememberNavController(),
     username: String,
-    email: String,
     age: Int,
-    isMale: Boolean
 ) {
     Scaffold(
         bottomBar = { BottomBar(navController = navController)}) { paddingValues ->
         NavHost(navController = navController, startDestination = Screen.Home.route, modifier = Modifier.padding(paddingValues)) {
             composable(Screen.Home.route) {
-                HomeScreen(username = username, age = age, navController = navController)
+                HomeScreen(username = username, navController = navController)
             }
             composable(Screen.Explore.route) {
                 ExploreScreen()
@@ -76,6 +70,6 @@ fun JournieApp(
 @Composable
 fun DefaultPreview2() {
     JournieTheme {
-        JournieApp(username = "rolandganteng", email = "ganteng@mail.com", age = 25, isMale = true)
+        JournieApp(username = "Tech Enthusiast", age = 25)
     }
 }

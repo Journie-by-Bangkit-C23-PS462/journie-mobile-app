@@ -3,21 +3,14 @@ package com.dicoding.journie.data
 import android.util.Log
 import com.dicoding.journie.data.network.api.APIConfig
 import com.dicoding.journie.data.network.api.APIService
-import com.dicoding.journie.data.network.response.CreatePlanResponse
-import com.dicoding.journie.data.network.response.Destination
-import com.dicoding.journie.data.network.response.DestinationRecommendation
-import com.google.gson.Gson
+import com.dicoding.journie.data.network.response.*
 import com.google.gson.JsonObject
-import com.google.gson.JsonParser
 import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.emptyFlow
-import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import java.net.Socket
 import java.net.SocketTimeoutException
 
 class Repository private constructor(
@@ -29,6 +22,85 @@ class Repository private constructor(
 
     private var _status = MutableStateFlow(false)
     val status : StateFlow<Boolean> = _status
+
+    private var _id = MutableStateFlow(0)
+    val id : StateFlow<Int> = _id
+
+    private var _savePlanResponse = MutableStateFlow("")
+    val savePlanResponse : StateFlow<String> = _savePlanResponse
+
+    private var _activePlanData = MutableStateFlow<List<List<List<DestinationRecommendation>>>?>(emptyList())
+    val activePlanData : StateFlow<List<List<List<DestinationRecommendation>>>?> = _activePlanData
+
+    private var _activePlanStatus = MutableStateFlow<Boolean>(false)
+    val activePlanStatus : StateFlow<Boolean> = _activePlanStatus
+
+    fun getActivePlan(
+        username: String
+    ) {
+        val requestBody = JsonObject()
+        requestBody.addProperty("username", username)
+
+        val client = APIConfig.getRecommendationPlanService().getActivePlan(requestBody)
+
+        try {
+            client.enqueue(
+                object : Callback<ActivePlanResponse> {
+                    override fun onResponse(
+                        call: Call<ActivePlanResponse>,
+                        response: Response<ActivePlanResponse>
+                    ) {
+                        var responses = response.body()
+                        if (response.isSuccessful) {
+                            if (responses != null) {
+                                _activePlanData.value = responses.data
+                                _activePlanStatus.value = responses.status
+                                Log.e(this::class.java.simpleName, "onResponse: Berhasil ambil data active plan")
+                            }
+                        }
+                    }
+
+                    override fun onFailure(call: Call<ActivePlanResponse>, t: Throwable) {
+                        Log.e(this::class.java.simpleName, "onFailure: ${t.message}")
+                    }
+                }
+            )
+        } catch (e: Exception) {
+            Log.e(this::class.java.simpleName, "Exception: ${e.message}")
+            _activePlanData.value = emptyList()
+            _activePlanStatus.value = false
+        }
+    }
+
+    fun savePlan(
+        planID : Int
+    ) {
+        val requestBody = JsonObject()
+        requestBody.addProperty("plan_id", planID)
+
+        val client = APIConfig.getRecommendationPlanService().savePlan(requestBody)
+
+        client.enqueue(
+            object : Callback<SavePlanResponse> {
+                override fun onResponse(
+                    call: Call<SavePlanResponse>,
+                    response: Response<SavePlanResponse>
+                ) {
+                    var responses = response.body()
+                    if (response.isSuccessful) {
+                        if (responses != null) {
+                            _savePlanResponse.value = responses.data
+                            Log.e(this::class.java.simpleName, "onResponse: Berhasil simpan data")
+                        }
+                    }
+                }
+
+                override fun onFailure(call: Call<SavePlanResponse>, t: Throwable) {
+                    Log.e(this::class.java.simpleName, "onFailure: ${t.message}")
+                }
+            }
+        )
+    }
 
     fun createPlanModel(
         city: String,
@@ -55,7 +127,7 @@ class Repository private constructor(
         requestBody.addProperty("pusatPerbelanjaan", pusatPerbelanjaan)
         requestBody.addProperty("tempatIbadah", tempatIbadah)
 
-        val client = APIConfig.getServiceCreateRecommendation().createPlanmodel(requestBody)
+        val client = APIConfig.getRecommendationPlanService().createPlanmodel(requestBody)
 
         client.enqueue(
             object : Callback<CreatePlanResponse> {
@@ -68,7 +140,8 @@ class Repository private constructor(
                         if (responses != null) {
                             _status.value = responses.status
                             _listPlaces.value = responses.data
-                            Log.e(this::class.java.simpleName, "onResponse: Berhasil masukin data}")
+                            _id.value = responses.planID
+                            Log.e(this::class.java.simpleName, "onResponse: Berhasil masukin data")
                         }
                     }
                 }
@@ -159,27 +232,3 @@ class Repository private constructor(
             }.also { instance = it }
     }
 }
-//
-//class CoroutineRetryPolicy(
-//    private val maxAttempts: Int = -1,
-//    private val shouldRetry: (Throwable) -> Boolean
-//) {
-//    suspend fun <T> retry(block: suspend() -> T): suspend () -> T {
-//        var currentAttempt = 0
-//        var lastException: Throwable? = null
-//
-//        while (maxAttempts == -1 || currentAttempt < maxAttempts) {
-//            try {
-//                return block
-//            } catch (err: Throwable) {
-//                if (!shouldRetry(err)) {
-//                    throw err
-//                }
-//                lastException = err
-//            }
-//            currentAttempt++
-//        }
-//        throw lastException ?: IllegalStateException("Retry failed without any exception")
-//    }
-//
-//}

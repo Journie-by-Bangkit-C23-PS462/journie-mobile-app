@@ -14,8 +14,8 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.dicoding.journie.ui.theme.JournieTheme
 import com.dicoding.journie.R
+import com.dicoding.journie.ui.theme.JournieTheme
 
 
 @Composable

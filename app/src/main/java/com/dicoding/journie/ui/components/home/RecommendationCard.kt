@@ -5,20 +5,12 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Card
-import androidx.compose.material.Icon
-import androidx.compose.material.IconButton
 import androidx.compose.material.Text
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.KeyboardArrowRight
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
-import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
@@ -33,7 +25,7 @@ fun RecommendationCard(
     modifier: Modifier = Modifier.padding(top = 12.dp, bottom = 12.dp, start = 25.dp, end = 25.dp),
     name : String,
     subname : String,
-    duration: Int,
+    duration: Int = 0,
     urlImage: String,
     description: String = "",
     category: String = "",
@@ -108,16 +100,18 @@ fun RecommendationCard(
                             color = Color.Gray,
                         )
                     }
-                    Column {
-                        Text(
-                            text = "Durasi",
-                            fontSize = 10.sp,
-                        )
-                        Text(
-                            text = "${duration} Menit",
-                            fontSize = 12.sp,
-                            fontWeight = FontWeight.Medium,
-                        )
+                    if (duration > 0) {
+                        Column {
+                            Text(
+                                text = "Durasi",
+                                fontSize = 10.sp,
+                            )
+                            Text(
+                                text = "${duration} Menit",
+                                fontSize = 12.sp,
+                                fontWeight = FontWeight.Medium,
+                            )
+                        }
                     }
                 }
             }

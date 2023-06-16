@@ -1,10 +1,7 @@
 package com.dicoding.journie.data.network.api
 
-import com.dicoding.journie.data.network.response.CreatePlanResponse
-import com.dicoding.journie.data.network.response.Destination
-import com.dicoding.journie.data.network.response.ExploreDestination
+import com.dicoding.journie.data.network.response.*
 import com.google.gson.JsonObject
-import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.http.Body
 import retrofit2.http.GET
@@ -30,4 +27,12 @@ interface APIService {
     @Headers("Content-Type: application/json")
     @POST("planmodel")
     fun createPlanmodel(@Body body: JsonObject) : Call<CreatePlanResponse>
+
+    @Headers("Content-Type: application/json")
+    @POST("savedplan")
+    fun savePlan(@Body body: JsonObject) : Call<SavePlanResponse>
+
+    @Headers("Content-Type: application/json")
+    @POST("activeplan")
+    fun getActivePlan(@Body body: JsonObject) : Call<ActivePlanResponse>
 }

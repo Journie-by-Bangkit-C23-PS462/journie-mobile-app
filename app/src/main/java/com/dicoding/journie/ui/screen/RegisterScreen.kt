@@ -1,8 +1,6 @@
 package com.dicoding.journie.ui.screen
 
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.gestures.ScrollableState
-import androidx.compose.foundation.gestures.scrollable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
@@ -22,10 +20,7 @@ import androidx.compose.ui.unit.sp
 import com.dicoding.journie.R
 import com.dicoding.journie.ui.components.EmailInput
 import com.dicoding.journie.ui.components.PasswordInput
-import com.dicoding.journie.ui.components.PrimaryButton
-import com.dicoding.journie.ui.components.register.GoogleRegisterButton
 import com.dicoding.journie.ui.components.register.NumberInput
-import com.dicoding.journie.ui.components.register.RegisterButton
 import com.dicoding.journie.ui.components.register.TextInput
 import com.dicoding.journie.ui.theme.JournieTheme
 
@@ -158,14 +153,14 @@ fun RegisterContent(
                     passwordState = it
                 }
             )
-            PrimaryButton(
-                onClick = {
-                    // TODO: Insert register logic here
-                },
-                modifier = Modifier
-                    .padding(top = 15.dp),
-                label = "Daftarkan Diriku"
-            )
+//            PrimaryButton(
+//                onClick = {
+//                    // TODO: Insert register logic here
+//                },
+//                modifier = Modifier
+//                    .padding(top = 15.dp),
+//                label = "Daftarkan Diriku"
+//            )
             Spacer(modifier = Modifier.height(15.dp))
             Text(text = stringResource(id = R.string.login_rec), textAlign = TextAlign.Center, modifier = Modifier.fillMaxWidth())
             Spacer(modifier = Modifier.height(15.dp))

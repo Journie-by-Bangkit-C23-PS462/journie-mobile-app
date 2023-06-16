@@ -1,8 +1,8 @@
 package com.dicoding.journie.data.network.response
 
-import kotlinx.parcelize.Parcelize
 import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
+import kotlinx.parcelize.Parcelize
 
 @Parcelize
 data class CreatePlanResponse(
@@ -10,7 +10,10 @@ data class CreatePlanResponse(
 	var data: List<List<DestinationRecommendation>>,
 
 	@field:SerializedName("status")
-	var status: Boolean
+	var status: Boolean,
+
+	@field:SerializedName("plan_id")
+	var planID: Int
 ) : Parcelable
 
 @Parcelize

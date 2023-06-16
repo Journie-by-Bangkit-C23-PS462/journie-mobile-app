@@ -3,12 +3,10 @@ package com.dicoding.journie.viewmodel
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.dicoding.journie.data.Repository
-import com.dicoding.journie.data.network.response.CreatePlanResponse
 import com.dicoding.journie.data.network.response.Destination
 import com.dicoding.journie.data.network.response.DestinationRecommendation
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.emptyFlow
 import kotlinx.coroutines.launch
 
 class DestinationViewModel(private val repository: Repository) : ViewModel() {
@@ -30,6 +28,14 @@ class DestinationViewModel(private val repository: Repository) : ViewModel() {
     val planModelList : StateFlow<List<List<DestinationRecommendation>>> = repository.listPlaces
 
     val planModelStatus : StateFlow<Boolean> = repository.status
+
+    val planModelID : StateFlow<Int> = repository.id
+
+    val savePlanResponse : StateFlow<String> = repository.savePlanResponse
+
+    val activePlanData : StateFlow<List<List<List<DestinationRecommendation>>>?> = repository.activePlanData
+
+    val activePlanStatus : StateFlow<Boolean> = repository.activePlanStatus
 
     init {
         viewModelScope.launch {
@@ -60,7 +66,19 @@ class DestinationViewModel(private val repository: Repository) : ViewModel() {
         }
     }
 
-//    fun savePlanModel(
-//        data:
-//    )
+    fun savePlanModel(
+        planId : Int
+    ) {
+        viewModelScope.launch {
+            repository.savePlan(planId)
+        }
+    }
+
+    fun getActivePlan(
+        username: String
+    ) {
+        viewModelScope.launch {
+            repository.getActivePlan(username)
+        }
+    }
 }

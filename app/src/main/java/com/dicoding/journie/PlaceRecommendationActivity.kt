@@ -6,11 +6,9 @@ import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
-import androidx.compose.material.Text
-import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
-import com.dicoding.journie.data.network.response.CreatePlanResponse
+import androidx.navigation.compose.rememberNavController
+import com.dicoding.journie.data.network.response.ActivePlanResponse
 import com.dicoding.journie.ui.screen.PlanRecommendationScreen
 import com.dicoding.journie.ui.theme.JournieTheme
 import com.google.accompanist.pager.ExperimentalPagerApi
@@ -20,6 +18,9 @@ class PlaceRecommendationActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        val listOfDays = intent.getParcelableExtra<ActivePlanResponse>(EXTRA_LIST_DESTINATION_PLAN)
+        val index = intent.getIntExtra(EXTRA_INDEX, 0)
+
         setContent {
             JournieTheme {
                 // A surface container using the 'background' color from the theme
@@ -27,6 +28,9 @@ class PlaceRecommendationActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colors.background
                 ) {
+                    if (listOfDays != null) {
+                        PlanRecommendationScreen(navController = rememberNavController(), listPlaceFromIntent = listOfDays.data!![index])
+                    }
                 }
             }
         }
@@ -34,5 +38,6 @@ class PlaceRecommendationActivity : ComponentActivity() {
 
     companion object {
         val EXTRA_LIST_DESTINATION_PLAN = "extra_destination_plan"
+        val EXTRA_INDEX = "extra_index"
     }
 }

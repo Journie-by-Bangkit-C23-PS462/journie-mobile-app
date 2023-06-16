@@ -3,7 +3,10 @@ package com.dicoding.journie.ui.screen
 import android.content.Intent
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
-import androidx.compose.material.*
+import androidx.compose.material.ButtonDefaults
+import androidx.compose.material.MaterialTheme
+import androidx.compose.material.Text
+import androidx.compose.material.TextButton
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -17,8 +20,6 @@ import androidx.compose.ui.unit.dp
 import com.dicoding.journie.R
 import com.dicoding.journie.RegisterActivity
 import com.dicoding.journie.ui.components.EmailInput
-import com.dicoding.journie.ui.components.GoogleLoginButton
-import com.dicoding.journie.ui.components.PrimaryButton
 import com.dicoding.journie.ui.components.PasswordInput
 import com.dicoding.journie.ui.theme.JournieTheme
 
@@ -91,14 +92,14 @@ fun LoginContent(
                     }
                 )
             }
-            PrimaryButton(
-                modifier = Modifier
-                    .padding(top = 15.dp),
-                onClick = {
-    //                    TODO: Insert login logic here
-                },
-                label = "Masuk"
-            )
+//            PrimaryButton(
+//                modifier = Modifier
+//                    .padding(top = 15.dp),
+//                onClick = {
+//    //                    TODO: Insert login logic here
+//                },
+//                label = "Masuk"
+//            )
             TextButton(
                 onClick = {
                     val intent = Intent(context, RegisterActivity::class.java)
