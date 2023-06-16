@@ -24,6 +24,8 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.navigation.NavHostController
+import androidx.navigation.compose.rememberNavController
 import com.dicoding.journie.DetailDestinationActivity
 import com.dicoding.journie.data.network.response.Destination
 import com.dicoding.journie.ui.components.home.BottomBar
@@ -55,7 +57,11 @@ fun ExploreScreen() {
                 modifier = Modifier.padding(start = 25.dp, top = 15.dp, bottom = 15.dp)
             )
             if (jakartaPlaces.isNullOrEmpty()) {
-                Box(modifier = Modifier.fillMaxWidth().height(20.dp).padding(start = 25.dp, end = 25.dp).align(alignment = Alignment.CenterHorizontally)) {
+                Box(modifier = Modifier
+                    .fillMaxWidth()
+                    .height(20.dp)
+                    .padding(start = 25.dp, end = 25.dp)
+                    .align(alignment = Alignment.CenterHorizontally)) {
                     CircularProgressIndicator()
                 }
             } else {
@@ -65,7 +71,11 @@ fun ExploreScreen() {
                 Spacer(modifier = Modifier.height(24.dp))
             }
             if (bandungPlaces.isNullOrEmpty()) {
-                Box(modifier = Modifier.fillMaxWidth().height(20.dp).padding(start = 25.dp, end = 25.dp).align(alignment = Alignment.CenterHorizontally)) {
+                Box(modifier = Modifier
+                    .fillMaxWidth()
+                    .height(20.dp)
+                    .padding(start = 25.dp, end = 25.dp)
+                    .align(alignment = Alignment.CenterHorizontally)) {
                     CircularProgressIndicator()
                 }
             } else {
@@ -75,7 +85,11 @@ fun ExploreScreen() {
                 Spacer(modifier = Modifier.height(24.dp))
             }
             if (surabayaPlaces.isNullOrEmpty()) {
-                Box(modifier = Modifier.fillMaxWidth().height(20.dp).padding(start = 25.dp, end = 25.dp).align(alignment = Alignment.CenterHorizontally)) {
+                Box(modifier = Modifier
+                    .fillMaxWidth()
+                    .height(20.dp)
+                    .padding(start = 25.dp, end = 25.dp)
+                    .align(alignment = Alignment.CenterHorizontally)) {
                     CircularProgressIndicator()
                 }
             } else {
@@ -85,7 +99,11 @@ fun ExploreScreen() {
                 Spacer(modifier = Modifier.height(24.dp))
             }
             if (semarangPlaces.isNullOrEmpty()) {
-                Box(modifier = Modifier.fillMaxWidth().height(20.dp).padding(start = 25.dp, end = 25.dp).align(alignment = Alignment.CenterHorizontally)) {
+                Box(modifier = Modifier
+                    .fillMaxWidth()
+                    .height(20.dp)
+                    .padding(start = 25.dp, end = 25.dp)
+                    .align(alignment = Alignment.CenterHorizontally)) {
                     CircularProgressIndicator()
                 }
             } else {
@@ -95,7 +113,11 @@ fun ExploreScreen() {
                 Spacer(modifier = Modifier.height(24.dp))
             }
             if (jogjaPlaces.isNullOrEmpty()) {
-                Box(modifier = Modifier.fillMaxWidth().height(20.dp).padding(start = 25.dp, end = 25.dp).align(alignment = Alignment.CenterHorizontally)) {
+                Box(modifier = Modifier
+                    .fillMaxWidth()
+                    .height(20.dp)
+                    .padding(start = 25.dp, end = 25.dp)
+                    .align(alignment = Alignment.CenterHorizontally)) {
                     CircularProgressIndicator()
                 }
             } else {

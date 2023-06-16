@@ -78,9 +78,11 @@ fun PlaceScreen(
                     fontSize = 18.sp
                 )
                 Spacer(modifier = Modifier.height(12.dp))
-                Row(horizontalArrangement = Arrangement.spacedBy(4.dp), verticalAlignment = Alignment.CenterVertically) {
-                    Icon(painter = painterResource(id = R.drawable.baseline_star_24), contentDescription = "star icon", tint = Color.Yellow)
-                    Text(text = "Rating: $rating (${score})", fontSize = 12.sp, color = Color.Gray)
+                if (rating != 0.0) {
+                    Row(horizontalArrangement = Arrangement.spacedBy(4.dp), verticalAlignment = Alignment.CenterVertically) {
+                        Icon(painter = painterResource(id = R.drawable.baseline_star_24), contentDescription = "star icon", tint = Color.Yellow)
+                        Text(text = "Rating: $rating (${score})", fontSize = 12.sp, color = Color.Gray)
+                    }
                 }
                 Spacer(modifier = Modifier.height(18.dp))
                 Text(text = description, lineHeight = 30.sp)

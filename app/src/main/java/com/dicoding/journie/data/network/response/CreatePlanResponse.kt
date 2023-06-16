@@ -7,14 +7,14 @@ import com.google.gson.annotations.SerializedName
 @Parcelize
 data class CreatePlanResponse(
 	@field:SerializedName("data")
-	val data: List<List<DestinationPlan>>,
+	var data: List<List<DestinationRecommendation>>,
 
 	@field:SerializedName("status")
-	val status: Boolean
+	var status: Boolean
 ) : Parcelable
 
 @Parcelize
-data class DestinationPlan(
+data class DestinationRecommendation(
 
 	@field:SerializedName("Description")
 	val description: String? = null,
@@ -28,14 +28,11 @@ data class DestinationPlan(
 	@field:SerializedName("Place_Name")
 	val placeName: String? = null,
 
-	@field:SerializedName("Rank")
-	val rank: Int? = null,
-
 	@field:SerializedName("City")
 	val city: String? = null,
 
-	@field:SerializedName("score")
-	val score: Int? = null,
+	@field:SerializedName("Duration")
+	val duration: Int? = null,
 
 	@field:SerializedName("Place_Id")
 	val placeId: Int? = null,

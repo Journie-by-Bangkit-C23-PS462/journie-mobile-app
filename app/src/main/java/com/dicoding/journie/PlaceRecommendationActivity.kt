@@ -10,15 +10,15 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import com.dicoding.journie.ui.screen.CreatePlanScreen
+import com.dicoding.journie.data.network.response.CreatePlanResponse
+import com.dicoding.journie.ui.screen.PlanRecommendationScreen
 import com.dicoding.journie.ui.theme.JournieTheme
+import com.google.accompanist.pager.ExperimentalPagerApi
 
-class CreatePlanActivity : ComponentActivity() {
+@OptIn(ExperimentalPagerApi::class)
+class PlaceRecommendationActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-        val username = intent.getStringExtra(EXTRA_USERNAME)
-        val age = intent.getIntExtra(EXTRA_AGE, 0)
 
         setContent {
             JournieTheme {
@@ -27,14 +27,12 @@ class CreatePlanActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colors.background
                 ) {
-//                    CreatePlanScreen(username = username.toString(), age = age)
                 }
             }
         }
     }
 
     companion object {
-        val EXTRA_USERNAME = "extra_username"
-        val EXTRA_AGE = "extra_age"
+        val EXTRA_LIST_DESTINATION_PLAN = "extra_destination_plan"
     }
 }

@@ -3,7 +3,10 @@ package com.dicoding.journie.data.network.api
 import com.dicoding.journie.data.network.response.CreatePlanResponse
 import com.dicoding.journie.data.network.response.Destination
 import com.dicoding.journie.data.network.response.ExploreDestination
+import com.google.gson.JsonObject
+import org.json.JSONObject
 import retrofit2.Call
+import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.Headers
 import retrofit2.http.POST
@@ -25,6 +28,6 @@ interface APIService {
     suspend fun getSemarangDestination() : ExploreDestination
 
     @Headers("Content-Type: application/json")
-    @POST("https://mldeployfix123-ancxei2osq-et.a.run.app/planmodel")
-    fun createPlanmodel()  : Call<CreatePlanResponse>
+    @POST("planmodel")
+    fun createPlanmodel(@Body body: JsonObject) : Call<CreatePlanResponse>
 }

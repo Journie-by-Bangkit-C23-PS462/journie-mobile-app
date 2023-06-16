@@ -19,10 +19,9 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.dicoding.journie.data.navigation.Screen
 import com.dicoding.journie.ui.components.home.BottomBar
-import com.dicoding.journie.ui.screen.ExploreScreen
-import com.dicoding.journie.ui.screen.HomeScreen
-import com.dicoding.journie.ui.screen.ProfileScreen
+import com.dicoding.journie.ui.screen.*
 import com.dicoding.journie.ui.theme.JournieTheme
+import com.google.accompanist.pager.ExperimentalPagerApi
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -34,13 +33,14 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colors.background
                 ) {
-
+                    JournieApp(username = "rolandganteng", email = "ganteng@mail.com", age = 25, isMale = true)
                 }
             }
         }
     }
 }
 
+@OptIn(ExperimentalPagerApi::class)
 @Composable
 fun JournieApp(
     modifier: Modifier = Modifier,
@@ -54,13 +54,19 @@ fun JournieApp(
         bottomBar = { BottomBar(navController = navController)}) { paddingValues ->
         NavHost(navController = navController, startDestination = Screen.Home.route, modifier = Modifier.padding(paddingValues)) {
             composable(Screen.Home.route) {
-                HomeScreen(username = username, age = age)
+                HomeScreen(username = username, age = age, navController = navController)
             }
             composable(Screen.Explore.route) {
                 ExploreScreen()
             }
-            composable(Screen.Profile.route) {
-                ProfileScreen(username = username, email = email, age = age, isMale = isMale)
+//            composable(Screen.Profile.route) {
+//                ProfileScreen(username = username, email = email, age = age, isMale = isMale)
+//            }
+            composable(Screen.CreatePlan.route) {
+                CreatePlanScreen(username = username, age = age, navController = navController)
+            }
+            composable(Screen.RecommendationPlan.route) {
+                PlanRecommendationScreen(navController = navController)
             }
         }
     }
@@ -70,6 +76,6 @@ fun JournieApp(
 @Composable
 fun DefaultPreview2() {
     JournieTheme {
-        JournieApp(username = "Orang Ganteng", email = "ganteng@mail.com", age = 25, isMale = true)
+        JournieApp(username = "rolandganteng", email = "ganteng@mail.com", age = 25, isMale = true)
     }
 }

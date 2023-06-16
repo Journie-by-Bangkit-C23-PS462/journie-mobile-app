@@ -1,6 +1,8 @@
 package com.dicoding.journie.ui.screen
 
 import android.app.Activity
+import android.content.Intent
+import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.runtime.*
 import androidx.compose.foundation.layout.*
@@ -13,6 +15,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
@@ -20,16 +23,28 @@ import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.navigation.NavController
+import androidx.navigation.NavHost
+import androidx.navigation.NavHostController
+import androidx.navigation.compose.rememberNavController
+import com.dicoding.journie.MainActivity
+import com.dicoding.journie.PlaceRecommendationActivity
+import com.dicoding.journie.data.navigation.Screen
+import com.dicoding.journie.data.network.response.CreatePlanResponse
 import com.dicoding.journie.ui.components.PrimaryButton
 import com.dicoding.journie.ui.components.home.DropdownChoice
 import com.dicoding.journie.ui.components.home.PreferenceTripCheckBox
 import com.dicoding.journie.ui.theme.JournieTheme
+import com.dicoding.journie.viewmodel.DestinationViewModel
+import com.dicoding.journie.viewmodel.DestinationViewModelFactory
 
 @Composable
 fun CreatePlanScreen(
     modifier: Modifier = Modifier,
     username: String,
-    age: Int
+    age: Int,
+    navController: NavHostController
 ) {
     val context = LocalContext.current as Activity
     var checkedBahariState by remember { mutableStateOf(false) }
@@ -40,6 +55,29 @@ fun CreatePlanScreen(
     var checkedTempatIbadah by remember { mutableStateOf(false) }
     var cityState by remember { mutableStateOf("-") }
     var durationState by remember { mutableStateOf("-") }
+
+    val destinationViewModel : DestinationViewModel = viewModel(factory = DestinationViewModelFactory.getInstance())
+    val recommendationStatus by destinationViewModel.planModelStatus.collectAsState()
+
+    var submitStatus by remember { mutableStateOf(false) }
+    if (submitStatus) {
+        Box(
+            modifier = Modifier
+                .fillMaxSize()
+                .background(Color.Black)
+                .alpha(0.4f)
+        ) {
+            Column(modifier = Modifier.fillMaxSize(), verticalArrangement = Arrangement.Center, horizontalAlignment = Alignment.CenterHorizontally) {
+                CircularProgressIndicator()
+            }
+        }
+    }
+
+    if (recommendationStatus) {
+        submitStatus = false
+        navController.navigate(Screen.RecommendationPlan.route)
+    }
+
     Scaffold(
         topBar = {
             TopAppBar(
@@ -48,7 +86,7 @@ fun CreatePlanScreen(
                 },
                 navigationIcon = {
                     IconButton(onClick = {
-                        context.finish()
+                        navController.popBackStack(route = Screen.Home.route, inclusive = false)
                     }) { Icon(Icons.Filled.ArrowBack, " icon back to the previous page") }
                 },
                 backgroundColor = Color.White,
@@ -67,7 +105,6 @@ fun CreatePlanScreen(
                 Row(
                     modifier = Modifier.fillMaxWidth()
                 ) {
-                    var expandedMenuState by remember { mutableStateOf(false) }
                     val cities = listOf(
                         "Bandung",
                         "Jakarta",
@@ -140,7 +177,19 @@ fun CreatePlanScreen(
                 }
                 PrimaryButton(
                     onClick = {
-                        // TODO: Insert planning recommendation logic here
+                        submitStatus = true
+                        destinationViewModel.createPlanModel(
+                            city = cityState,
+                            duration = durationState.toInt(),
+                            age = age,
+                            username = username,
+                            bahari = checkedBahariState,
+                            budaya = checkedBudayaState,
+                            tamanHiburan = checkedTamanHiburanState,
+                            cagarAlam = checkedCagarAlamState,
+                            pusatPerbelanjaan = checkedPusatPerbelanjaanState,
+                            tempatIbadah = checkedTempatIbadah
+                        )
                     },
                     modifier = Modifier
                         .padding(top = 15.dp),
@@ -158,7 +207,8 @@ fun CreatePlanPreview() {
     JournieTheme {
         CreatePlanScreen(
             username = "Robert",
-            age = 21
+            age = 21,
+            navController = rememberNavController()
         )
     }
 }

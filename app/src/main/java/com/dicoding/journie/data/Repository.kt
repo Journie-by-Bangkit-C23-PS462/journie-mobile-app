@@ -1,13 +1,84 @@
 package com.dicoding.journie.data
 
+import android.util.Log
+import com.dicoding.journie.data.network.api.APIConfig
 import com.dicoding.journie.data.network.api.APIService
+import com.dicoding.journie.data.network.response.CreatePlanResponse
 import com.dicoding.journie.data.network.response.Destination
+import com.dicoding.journie.data.network.response.DestinationRecommendation
+import com.google.gson.Gson
+import com.google.gson.JsonObject
+import com.google.gson.JsonParser
 import kotlinx.coroutines.*
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.emptyFlow
+import org.json.JSONObject
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+import java.net.Socket
 import java.net.SocketTimeoutException
 
 class Repository private constructor(
     private val apiService: APIService
 ){
+
+    private var _listPlaces = MutableStateFlow<List<List<DestinationRecommendation>>>(emptyList())
+    val listPlaces : StateFlow<List<List<DestinationRecommendation>>> = _listPlaces
+
+    private var _status = MutableStateFlow(false)
+    val status : StateFlow<Boolean> = _status
+
+    fun createPlanModel(
+        city: String,
+        duration: Int,
+        age: Int,
+        username: String,
+        bahari: Boolean,
+        budaya: Boolean,
+        tamanHiburan: Boolean,
+        cagarAlam: Boolean,
+        pusatPerbelanjaan: Boolean,
+        tempatIbadah: Boolean
+    ) {
+
+        val requestBody = JsonObject()
+        requestBody.addProperty("city", city)
+        requestBody.addProperty("duration", duration)
+        requestBody.addProperty("age", age)
+        requestBody.addProperty("username", username)
+        requestBody.addProperty("bahari", bahari)
+        requestBody.addProperty("budaya", budaya)
+        requestBody.addProperty("tamanHiburan", tamanHiburan)
+        requestBody.addProperty("cagarAlam", cagarAlam)
+        requestBody.addProperty("pusatPerbelanjaan", pusatPerbelanjaan)
+        requestBody.addProperty("tempatIbadah", tempatIbadah)
+
+        val client = APIConfig.getServiceCreateRecommendation().createPlanmodel(requestBody)
+
+        client.enqueue(
+            object : Callback<CreatePlanResponse> {
+                override fun onResponse(
+                    call: Call<CreatePlanResponse>,
+                    response: Response<CreatePlanResponse>
+                ) {
+                    var responses = response.body()
+                    if (response.isSuccessful) {
+                        if (responses != null) {
+                            _status.value = responses.status
+                            _listPlaces.value = responses.data
+                            Log.e(this::class.java.simpleName, "onResponse: Berhasil masukin data}")
+                        }
+                    }
+                }
+
+                override fun onFailure(call: Call<CreatePlanResponse>, t: Throwable) {
+                    Log.e(this::class.java.simpleName, "onFailure: ${t.message}")
+                }
+            }
+        )
+    }
 
     suspend fun getJakartaPlaces() : List<Destination> {
         return try {
@@ -17,6 +88,43 @@ class Repository private constructor(
             emptyList()
         }
     }
+
+    suspend fun getBandungPlaces() : List<Destination> {
+        return try {
+            val response = apiService.getBandungDestination()
+            return response.data.toList()
+        } catch (e: SocketTimeoutException) {
+            emptyList()
+        }
+    }
+
+    suspend fun getSurabayaPlaces() : List<Destination> {
+        return try {
+            val response = apiService.getSurabayaDestination()
+            return response.data.toList()
+        } catch (e: SocketTimeoutException) {
+            emptyList()
+        }
+    }
+
+    suspend fun getSemarangPlaces() : List<Destination> {
+        return try {
+            val response = apiService.getSemarangDestination()
+            return response.data.toList()
+        } catch (e: SocketTimeoutException) {
+            emptyList()
+        }
+    }
+
+    suspend fun getJogjaPlaces() : List<Destination> {
+        return try {
+            val response = apiService.getJogjaDestination()
+            return response.data.toList()
+        } catch (e: SocketTimeoutException) {
+            emptyList()
+        }
+    }
+
 
     private fun refreshAPICallPeriodically(
         refreshIntervalMillis: Long,
@@ -38,36 +146,6 @@ class Repository private constructor(
     ) : Job {
         return refreshAPICallPeriodically(refreshIntervalMillis, coroutineScope, refreshAction)
     }
-
-    suspend fun getBandungPlaces() : List<Destination> {
-        val response = apiService.getBandungDestination()
-        return response.data.toList()
-    }
-
-    suspend fun getSurabayaPlaces() : List<Destination> {
-        val response = apiService.getSurabayaDestination()
-        return response.data.toList()
-    }
-
-    suspend fun getSemarangPlaces() : List<Destination> {
-        val response = apiService.getSemarangDestination()
-        return response.data.toList()
-    }
-
-    suspend fun getJogjaPlaces() : List<Destination> {
-        val response = apiService.getJogjaDestination()
-        return response.data.toList()
-    }
-
-//    private suspend fun <T> retryIO(
-//        timeOutMillis: Long = 5000,
-//        block: suspend () -> List<Destination>
-//    ) : T {
-//        return withTimeoutOrNull(timeOutMillis) {
-//            retryPolicy.retry { block }
-//        } ?: throw SocketTimeoutException("Timeout Occurred")
-//    }
-
 
     companion object {
         @Volatile

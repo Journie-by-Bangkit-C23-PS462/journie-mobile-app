@@ -22,6 +22,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -40,7 +41,8 @@ import com.dicoding.journie.ui.theme.JournieTheme
 fun HomeScreen(
     modifier: Modifier = Modifier,
     username: String,
-    age: Int
+    age: Int,
+    navController: NavHostController
 ) {
     val context = LocalContext.current
     Box(modifier = modifier.fillMaxSize()) {
@@ -53,11 +55,7 @@ fun HomeScreen(
         ) {
             FloatingActionButton(
                 onClick = {
-                          val intent = Intent(context, CreatePlanActivity::class.java).apply {
-                              putExtra(CreatePlanActivity.EXTRA_USERNAME, username)
-                              putExtra(CreatePlanActivity.EXTRA_AGE, age)
-                          }
-                    context.startActivity(intent)
+                          navController.navigate(Screen.CreatePlan.route)
                 },
                 backgroundColor = Color.Black,
                 contentColor = Color.Yellow,
@@ -152,6 +150,6 @@ fun HomeScreen(
 @Composable
 fun HomePreview() {
     JournieTheme {
-        HomeScreen(username = "Orang Ganteng", age = 22)
+        HomeScreen(username = "Orang Ganteng", age = 22, navController = rememberNavController())
     }
 }
