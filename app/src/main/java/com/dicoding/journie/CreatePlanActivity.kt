@@ -7,12 +7,15 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.ui.Modifier
-import com.dicoding.journie.ui.screen.LoginScreen
 import com.dicoding.journie.ui.theme.JournieTheme
 
-class LoginActivity : ComponentActivity() {
+class CreatePlanActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        val username = intent.getStringExtra(EXTRA_USERNAME)
+        val age = intent.getIntExtra(EXTRA_AGE, 0)
+
         setContent {
             JournieTheme {
                 // A surface container using the 'background' color from the theme
@@ -20,9 +23,14 @@ class LoginActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colors.background
                 ) {
-                    LoginScreen()
+//                    CreatePlanScreen(username = username.toString(), age = age)
                 }
             }
         }
+    }
+
+    companion object {
+        val EXTRA_USERNAME = "extra_username"
+        val EXTRA_AGE = "extra_age"
     }
 }
